@@ -35,7 +35,10 @@ class Admin::MoviesController < ApplicationController
     redirect_to admin_movies_path, notice: 'Movie was successfully destroyed.'
   end
 
-  def show; end
+  def show
+    @movie = Movie.find(params[:id])
+    @schedules = @movie.schedules
+  end
 
   private
 

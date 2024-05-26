@@ -21,11 +21,12 @@
   <% @movies.each do |movie| %>
     <tr>
     <td><%= movie.id %></td>
-    <td><%= movie.name %></td>
+    <td><%= link_to movie.name, admin_movie_path(movie) %></td>
     <td><%= movie.year %></td>
     <td><%= movie.description %></td>
     <td>
-        <a href="<%= movie.image_url %>">画像</a>
+        <%= image_tag movie.image_url, alt: movie.name %>
+
     </td>
     <td>
     <% if movie.is_showing %>

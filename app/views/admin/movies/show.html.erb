@@ -1,0 +1,13 @@
+<h2>映画作品: <%= @movie.name %></h2>
+
+<%= link_to 'スケジュール追加', new_admin_movie_schedule_path(@movie) %>
+<ul>
+  <% @movie.schedules.each do |schedule| %>
+    <li>
+      <%= link_to "開始: #{schedule.start_time} 終了: #{schedule.end_time}", admin_schedule_path(schedule) %>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to '編集', edit_admin_movie_path(@movie) %>
+<%= link_to '一覧に戻る', admin_movies_path %>
