@@ -1,0 +1,16 @@
+<h1>Sheets</h1>
+<!-- デバッグ情報をビューに表示 -->
+
+<table border="1">
+  <tbody>
+    <% @sheets_by_row.each do |row, sheets| %>
+      <tr>
+        <% (@sheets.first.column..@sheets.last.column).each do |column| %>
+          <td>
+              <%= row %>-<%= column %>
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

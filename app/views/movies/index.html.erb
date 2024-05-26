@@ -1,0 +1,33 @@
+<h1>映画一覧</h1>
+<!--検索フォーム-->
+<div>
+  <%= form_with url: movies_path, method: :get, local: true do |form| %>
+    <%= form.label :keyword, 'Search:' %>
+    <%= form.text_field :keyword, value: params[:keyword] %>
+
+    <div>
+      <%= form.label :is_showing, 'Currently Showing:' %><br>
+      <%= form.radio_button :is_showing, '', checked: params[:is_showing].blank? %>
+      <%= form.label :is_showing, 'すべて', value: '' %><br>
+      
+      <%= form.radio_button :is_showing, 'true', checked: params[:is_showing] == 'true' %>
+      <%= form.label :is_showing, '上映中', value: 'true' %><br>
+      
+      <%= form.radio_button :is_showing, 'false', checked: params[:is_showing] == 'false' %>
+      <%= form.label :is_showing, '上映予定', value: 'false' %>
+    </div>
+
+    <%= form.submit 'Search' %>
+  <% end %>
+</div>
+<ul>
+<% @movies.each do |movie| %>
+    <li>
+        <a href="/movies/<%= movie.id %>">
+        <%= movie.name %>
+        </a>
+        <img src="<%= movie.image_url %>" alt="<%= movie.id %>">
+    </li>
+    <% end %>
+</ul>
+

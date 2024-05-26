@@ -1,0 +1,44 @@
+
+<table border='1'>
+  <caption>
+    管理者テーブル
+  </caption>
+  <%= link_to "New Movie", "/admin/movies/new" %>  
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">タイトル</th>
+      <th scope="col">公開年</th>
+      <th scope="col">概要</th>
+      <th scope="col">画像URL</th>
+      <th scope="col">上映中</th>
+      <th scope="col">登録日時</th>
+      <th scope="col">更新日時</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @movies.each do |movie| %>
+    <tr>
+    <td><%= movie.id %></td>
+    <td><%= movie.name %></td>
+    <td><%= movie.year %></td>
+    <td><%= movie.description %></td>
+    <td>
+        <a href="<%= movie.image_url %>">画像</a>
+    </td>
+    <td>
+    <% if movie.is_showing %>
+        上映中
+    <% else %>
+        上映予定
+    <% end %>
+    </td>
+    <td><%= movie.created_at %></td>
+    <td><%= movie.updated_at %></td>
+    <td><%= link_to 'Edit', edit_admin_movie_path(movie) %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+

@@ -1,0 +1,28 @@
+<h1><%= @movie.name %></h1>
+
+<p><strong>Release Year:</strong> <%= @movie.year %></p>
+<p><strong>Description:</strong> <%= @movie.description %></p>
+<p><strong>Currently Showing:</strong> <%= @movie.is_showing ? 'Yes' : 'No' %></p>
+
+<p><strong>Image:</strong></p>
+<%= image_tag @movie.image_url, alt: @movie.name %>
+
+<h2>Schedules</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Start Time</th>
+      <th>End Time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @schedules.each do |schedule| %>
+      <tr>
+        <td><%= schedule.start_time.strftime("%H:%M") %></td>
+        <td><%= schedule.end_time.strftime("%H:%M") %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Back to Movies', movies_path %>
